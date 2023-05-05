@@ -17,6 +17,8 @@ set -eufo pipefail
 {{ $taps := list
   "homebrew/cask"
   "homebrew/cask-fonts"
+  "koekeishiya/formulae"
+  "yqrashawn/goku"
 -}}
 
 {{ $brews := list
@@ -52,4 +54,9 @@ brew "{{ . }}"
 cask "{{ . }}"
 {{ end }}
 EOF
+
+echo "Start services..."
+
+brew services start goku
+
 
