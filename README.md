@@ -8,7 +8,7 @@ This is the original repo https://github.com/narze/dotfiles
 
 [https://github.com/boatnoodle/dotfiles](https://github.com/boatnoodle/dotfiles)
 
-## How to automated
+## How to automate
 
 1. Run below command to install `homebrew`, `ohmyzsh`, `chezmoi` accordingly. After finishing those installation, it will read through the `.chezmoiscripts`  and set up packages, applications respectively.
     
