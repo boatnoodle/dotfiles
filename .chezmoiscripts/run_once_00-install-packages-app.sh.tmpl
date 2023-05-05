@@ -1,0 +1,54 @@
+#!/bin/bash
+
+# Install Mac Apps via Homebrew Cask
+
+source /tmp/chezmoi-utils.sh
+
+printf "${green}[20 - macOS] ${reset}"
+{{- if or (lt 20 (atoi (env "SCRIPTS_START_AT"))) (env "SKIP_APPS") }}
+echo "Skip installing Mac Apps via Homebrew Cask"
+exit 0
+{{ else }}
+echo "Install Mac Apps via Homebrew Cask"
+{{- end }}
+
+set -eufo pipefail
+
+{{ $taps := list -}}
+
+{{ $brews := list -}}
+
+{{ $casks := list
+  "raycast"
+  "discord"
+  "docker"
+  "google-chrome"
+  "google-drive"
+  "karabiner-elements"
+  "keyboard-maestro"
+  "keycastr"
+  "microsoft-edge"
+  "postman"
+  "slack"
+  "telegram"
+  "the-unarchiver"
+  "visual-studio-code"
+  "insomnia"
+  "iterm2"
+  "nosqlbooster-for-mongodb"
+  "linear-linear"
+  "rectangle"
+  "notion"
+-}}
+
+brew bundle --no-lock --file=/dev/stdin <<EOF || :
+{{ range ($taps | sortAlpha | uniq) -}}
+tap "{{ . }}"
+{{ end }}
+{{ range ($brews | sortAlpha | uniq) -}}
+brew "{{ . }}"
+{{ end }}
+{{ range ($casks | sortAlpha | uniq) -}}
+cask "{{ . }}"
+{{ end }}
+EOF

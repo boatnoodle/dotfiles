@@ -1,0 +1,55 @@
+#!/bin/bash
+
+# Install common macOS packages
+
+source /tmp/chezmoi-utils.sh
+
+printf "${green}[10 - macOS] ${reset}"
+{{- if or (lt 10 (atoi (env "SCRIPTS_START_AT"))) (env "SKIP_BREW") }}
+echo "Skip installing common macOS packages"
+exit 0
+{{ else }}
+echo "Install common macOS packages"
+{{- end }}
+
+set -eufo pipefail
+
+{{ $taps := list
+  "homebrew/cask"
+  "homebrew/cask-fonts"
+-}}
+
+{{ $brews := list
+  "gh"
+  "ghq"
+  "git"
+
+  "zsh"
+
+  "docker"
+  "docker-compose"
+
+  "btop"
+  "chezmoi"
+  "shellcheck"
+-}}
+
+{{ $casks := list
+  "font-comic-mono"
+  "font-fira-code-nerd-font"
+  "font-fantasque-sans-mono"
+  "font-fantasque-sans-mono-nerd-font"
+-}}
+
+brew bundle --no-lock --file=/dev/stdin <<EOF || :
+{{ range ($taps | sortAlpha | uniq) -}}
+tap "{{ . }}"
+{{ end }}
+{{ range ($brews | sortAlpha | uniq) -}}
+brew "{{ . }}"
+{{ end }}
+{{ range ($casks | sortAlpha | uniq) -}}
+cask "{{ . }}"
+{{ end }}
+EOF
+
