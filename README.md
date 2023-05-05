@@ -21,7 +21,7 @@ This is the original repo https://github.com/narze/dotfiles
         - `chezmoi apply` - to apply all backup dotfile
         - `chezmoi cd` - to jump in a local git that is the place we can organize our dotfiles repo.
             - `exit` - we can use exit command to jump out to the home directory.
-2. Do the manual task
+2. Do the manual tasks
     1.  karabiner-elements
         1. create `~/.config/karabiner/karabiner.json`
         2. create  `default` name profile in karabiner app 
