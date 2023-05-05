@@ -1,4 +1,4 @@
-## Install
+## Problems & Inspiration
 
 I’ve had problem in a long time about moving to the new Mac. Because I didn’t remember my application I used, even un count the unmanageable dotfiles I still can’t remember anything. Luckily, I’m inspired by P’Noom (Narze) that the way he organized his dotfile stuff. 
 
